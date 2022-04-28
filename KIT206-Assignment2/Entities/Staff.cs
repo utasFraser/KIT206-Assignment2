@@ -31,5 +31,10 @@ namespace KIT206_Assignment2
         public string email { get; set; }
         public string photo { get; set; }
         public Category category { get; set; }
+
+        public override string ToString()
+        {
+            return String.Format("ID: {0}, Given Name: {1}, Family Name: {2}", id, given_name, family_name);
+        }
     }
 }

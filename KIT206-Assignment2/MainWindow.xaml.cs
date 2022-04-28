@@ -85,8 +85,9 @@ namespace KIT206_Assignment2
                     }
                     catch { }
 
-                    staff.Add(new Staff { 
-                        id = rdr.GetInt32(0), 
+                    staff.Add(new Staff
+                    {
+                        id = rdr.GetInt32(0),
                         given_name = rdr.GetString(1),
                         family_name = rdr.GetString(2),
                         title = rdr.GetString(3),
@@ -253,16 +254,60 @@ namespace KIT206_Assignment2
             return consultations;
         }
 
+        // List of all staff members
+        public static List<Staff> staffList = new List<Staff>();
+
         public MainWindow()
         {
             InitializeComponent();
 
-            // Database reading tests, not very important at the moment
-            LoadAllStaff();
-            LoadAllClasses();
-            LoadAllConsultations();
-            LoadAllUnits();
+            staffList = LoadAllStaff();
+            // LoadAllClasses();
+            // LoadAllConsultations();
+            // LoadAllUnits();
 
+            staffListBox.Items.Clear();
+            foreach (var staff in staffList)
+            {
+                staffListBox.Items.Add(staff);
+            }
+        }
+
+        private void detailsButton_Click(object sender, RoutedEventArgs e)
+        {
+            uint staffIndex = (uint)staffListBox.SelectedIndex;
+            if (staffIndex >= staffList.Count)
+                return; // don't select any invalid staff members
+
+            // TODO: add code to open the staff details window
+            Console.WriteLine($"Staff {staffIndex} Details Pressed");
+        }
+
+        private void staffButton_Click(object sender, RoutedEventArgs e)
+        {
+            // With just one window we don't need to do too much here
+            // It's disabled by default so its obvious it shouldn't be pressed yet
+
+            // later on we'll probably have this button return us to the staff list
+            Console.WriteLine("Staff Button Pressed");
+        }
+
+        private void unitButton_Click(object sender, RoutedEventArgs e)
+        {
+            // TODO: add code to change/open unit view
+            Console.WriteLine("Unit Button Pressed");
+        }
+
+        private void classButton_Click(object sender, RoutedEventArgs e)
+        {
+            // TODO: add code to change/open class view
+            Console.WriteLine("Class Button Pressed");
+        }
+
+        private void consultationButton_Click(object sender, RoutedEventArgs e)
+        {
+            // TODO: add code to change/open consultation view
+            Console.WriteLine("Consultation Button Pressed");
         }
     }
 }
