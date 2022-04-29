@@ -15,16 +15,12 @@ namespace KIT206_Assignment2
     /// <summary>
     /// Interaction logic for UnitView.xaml
     /// </summary>
-    public partial class UnitView : UserControl
+    public partial class UnitView : Window
     {
-        private MainWindow mainWindow;
-
         private UnitList unitList = new UnitList();
 
-        public UnitView(MainWindow mainWin)
+        public UnitView()
         {
-            mainWindow = mainWin;
-
             InitializeComponent();
 
             var list = unitList.VisibleUnits;
@@ -33,8 +29,17 @@ namespace KIT206_Assignment2
 
         private void staffButton_Click(object sender, RoutedEventArgs e)
         {
-            mainWindow.viewGrid.Children.Clear();
-            mainWindow.viewGrid.Children.Add(mainWindow.staffView);
+            // With just one window we don't need to do too much here
+            // It's disabled by default so its obvious it shouldn't be pressed yet
+
+            // later on we'll probably have this button return us to the staff list
+            Console.WriteLine("Staff Button Pressed");
+        }
+
+        private void unitButton_Click(object sender, RoutedEventArgs e)
+        {
+            // TODO: add code to change/open unit view
+            Console.WriteLine("Unit Button Pressed");
         }
 
         private void classButton_Click(object sender, RoutedEventArgs e)
@@ -45,8 +50,8 @@ namespace KIT206_Assignment2
 
         private void consultationButton_Click(object sender, RoutedEventArgs e)
         {
-            mainWindow.viewGrid.Children.Clear();
-            mainWindow.viewGrid.Children.Add(mainWindow.consultationView);
+            // TODO: add code to change/open consultation view
+            Console.WriteLine("Consultation Button Pressed");
         }
 
         private void EditCoordinator_Click(object sender, RoutedEventArgs e)

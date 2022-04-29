@@ -33,14 +33,14 @@ namespace KIT206_Assignment2
         {
             Consultation consultation = new Consultation();
             int id;
-            if (!int.TryParse(txtStaffID.Text, out id))
+            if (!int.TryParse(txtStaffID.Text, out id)) 
             {
                 MessageBox.Show("Please check the staff ID format.");
             }
             consultation.staff_id = id;
             consultation.day = (Consultation.Day)boxDay.SelectedItem;
             TimeSpan start, end;
-            if (!TimeSpan.TryParse(txtStart.Text, out start))
+            if(!TimeSpan.TryParse(txtStart.Text, out start))
             {
                 MessageBox.Show("Please check the start time format.");
             }
