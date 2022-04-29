@@ -20,6 +20,7 @@ namespace KIT206_Assignment2
     {
 
         public Staff staffMember;
+        private bool isEditing = false;
 
         // code borrowed from: https://stackoverflow.com/a/14337202
         public BitmapImage ToImage(byte[] array)
@@ -35,12 +36,13 @@ namespace KIT206_Assignment2
             }
         }
 
-        public EditStaffDetails(Staff staff)
+        public EditStaffDetails(Staff staff, bool isEditing = true)
         {
 
             InitializeComponent();
 
             staffMember = staff;
+            this.isEditing = isEditing;
 
             staffIDBox.Text             = staffMember.id.ToString();
             nameBox.Text                = staffMember.given_name;
@@ -52,8 +54,20 @@ namespace KIT206_Assignment2
             emailBox.Text               = staffMember.email;
             categoryBox.SelectedIndex   = (int)staffMember.category;
 
-            if (staffMember.photo.Length > 0)
+            if (staffMember.photo != null && staffMember.photo.Length > 0)
                 photo.Source = ToImage(staffMember.photo);
+
+            if (isEditing)
+            {
+                staffIDBox.IsEnabled = false;
+                campusBox.IsEnabled = false;
+                phoneBox.IsEnabled = false;
+                roomBox.IsEnabled = false;
+                emailBox.IsEnabled = false;
+            }
+
+            saveButton.Content = isEditing ? "Update Staff Member" : "Add Staff Member";
+            this.Title = isEditing ? "Edit Staff Details" : "Add Staff Member";
         }
 
         private void staffIDBox_TextChanged(object sender, TextChangedEventArgs args)
@@ -131,7 +145,7 @@ namespace KIT206_Assignment2
 
         private void saveButton_Click(object sender, RoutedEventArgs e)
         {
-            sqlConn.UploadStaffMember(staffMember);
+            sqlConn.UploadStaffMember(staffMember, isEditing);
             Close();
         }
 
