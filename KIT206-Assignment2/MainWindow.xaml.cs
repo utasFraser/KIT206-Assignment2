@@ -100,5 +100,15 @@ namespace KIT206_Assignment2
             AddConsultation popup = new AddConsultation();
             popup.ShowDialog();
         }
+
+        private void btnEditConsultation_Click(object sender, RoutedEventArgs e)
+        {
+            int itemIndex = staffListBox.SelectedIndex;
+            EditConsultation editConsultation = new EditConsultation(consultationList[itemIndex]);
+            editConsultation.ShowDialog();
+            consultationList[itemIndex] = editConsultation.change;
+            staffListBox.Items.RemoveAt(itemIndex);
+            staffListBox.Items.Insert(itemIndex, editConsultation.change);
+        }
     }
 }

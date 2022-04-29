@@ -290,13 +290,13 @@ namespace KIT206_Assignment2
             {
                 conn.Open();
 
-                MySqlCommand cmd = new MySqlCommand("insert into consultation (staff_id, day, start, end) values ()", conn);
+                MySqlCommand cmd = new MySqlCommand("insert into consultation (staff_id, day, start, end) values ("+consultation.staff_id+", "+consultation.day+", "+consultation.start+", "+consultation.end+")", conn);
                 rdr = cmd.ExecuteReader();
 
             }
-            catch (MySqlException ee)
+            catch (MySqlException e)
             {
-                Console.WriteLine("Error connecting to database: " + ee);
+                Console.WriteLine("Error connecting to database: " + e);
             }
             finally
             {

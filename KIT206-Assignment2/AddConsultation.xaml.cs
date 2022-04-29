@@ -31,16 +31,14 @@ namespace KIT206_Assignment2
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            List<Consultation> consultations = new List<Consultation>();
-
-            MySqlConnection conn = sqlConn.GetConnection();
-            MySqlDataReader rdr = null;
+            Consultation consultation = new Consultation();
             int id;
             if (!int.TryParse(txtStaffID.Text, out id)) 
             {
                 MessageBox.Show("Please check the staff ID format.");
             }
-            Consultation.Day day = (Consultation.Day)boxDay.SelectedItem;
+            consultation.staff_id = id;
+            consultation.day = (Consultation.Day)boxDay.SelectedItem;
             TimeSpan start, end;
             if(!TimeSpan.TryParse(txtStart.Text, out start))
             {
@@ -50,30 +48,10 @@ namespace KIT206_Assignment2
             {
                 MessageBox.Show("Please check the end time format.");
             }
+            consultation.start = start;
+            consultation.end = end;
 
-            try
-            {
-                conn.Open();
-
-                MySqlCommand cmd = new MySqlCommand("insert into consultation (staff_id, day, start, end) values (" + id + ", " + day + ", " + start + ", " + end + ")", conn);
-                rdr = cmd.ExecuteReader();
-
-            }
-            catch (MySqlException ee)
-            {
-                Console.WriteLine("Error connecting to database: " + ee);
-            }
-            finally
-            {
-                if (rdr != null)
-                {
-                    rdr.Close();
-                }
-                if (conn != null)
-                {
-                    conn.Close();
-                }
-            }
+            sqlConn.AddConsultation(consultation);
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
