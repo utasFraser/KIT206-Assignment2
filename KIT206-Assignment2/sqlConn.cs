@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows;
 
 namespace KIT206_Assignment2
 {
@@ -239,40 +240,6 @@ namespace KIT206_Assignment2
             return consultations;
         }
 
-        public static void UploadNewUnit(Unit unit)
-        {
-            MySqlConnection conn = GetConnection();
-            MySqlDataReader rdr = null;
-
-            try
-            {
-                conn.Open();
-                using (MySqlCommand command = new MySqlCommand())
-                {
-                    command.Connection = conn;
-                    command.CommandText = $"INSERT INTO unit (code, title, coordinator) VALUES ('{unit.code}', '{unit.title}', '{unit.coordinator}');";
-
-                    command.ExecuteNonQuery();
-
-                }
-            }
-            catch (MySqlException e)
-            {
-                Console.WriteLine("Error connecting to database: " + e);
-            }
-            finally
-            {
-                if (rdr != null)
-                {
-                    rdr.Close();
-                }
-                if (conn != null)
-                {
-                    conn.Close();
-                }
-            }
-        }
-
         public static void UploadStaffMember(Staff staff, bool isEditing = false)
         {
             MySqlConnection conn = GetConnection();
@@ -336,6 +303,7 @@ namespace KIT206_Assignment2
             }
         }
 
+        //dont touch, its working
         public static void AddConsultation(Consultation consultation)
         {
             MySqlConnection conn = GetConnection();
@@ -344,9 +312,12 @@ namespace KIT206_Assignment2
             try
             {
                 conn.Open();
-
-                MySqlCommand cmd = new MySqlCommand("insert into consultation (staff_id, day, start, end) values (" + consultation.staff_id.ToString() + ", " + consultation.day + ", " + consultation.start + ", " + consultation.end + ");", conn);
-                rdr = cmd.ExecuteReader();
+                using (MySqlCommand command = new MySqlCommand())
+                {
+                    command.Connection = conn;
+                    command.CommandText = $"insert into consultation values ('{consultation.staff_id}', '{consultation.day}', '{consultation.start}', '{consultation.end}') ;";
+                    command.ExecuteNonQuery();
+                }
 
             }
             catch (MySqlException e)
@@ -377,7 +348,8 @@ namespace KIT206_Assignment2
                 using (MySqlCommand command = new MySqlCommand())
                 {
                     command.Connection = conn;
-                    command.CommandText = $"update consultation set staff_id = '{consultation.staff_id}', day = '{consultation.day}', start = '{consultation.start}', end = '{consultation.end}' WHERE item = '{consultation}' ;";
+                    command.CommandText = $"update consultation set staff_id = '{consultation.staff_id}', day = '{consultation.day}', start = '{consultation.start}', end = '{consultation.end}' WHERE staff_id = '{consultation.staff_id}' and day = '{consultation.day}';";
+                    //MessageBox.Show(command.CommandText);  //for debugging
                     command.ExecuteNonQuery();
                 }
             }
@@ -398,6 +370,7 @@ namespace KIT206_Assignment2
             }
         }
 
+        //dont touch, its working
         public static void RemoveConsultation(Consultation consultation)
         {
             MySqlConnection conn = GetConnection();

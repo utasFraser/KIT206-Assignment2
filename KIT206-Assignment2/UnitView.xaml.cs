@@ -39,8 +39,8 @@ namespace KIT206_Assignment2
 
         private void classButton_Click(object sender, RoutedEventArgs e)
         {
-            // TODO: add code to change/open class view
-            Console.WriteLine("Class Button Pressed");
+            mainWindow.viewGrid.Children.Clear();
+            mainWindow.viewGrid.Children.Add(mainWindow.classView);
         }
 
         private void consultationButton_Click(object sender, RoutedEventArgs e)
@@ -51,20 +51,14 @@ namespace KIT206_Assignment2
 
         private void EditCoordinator_Click(object sender, RoutedEventArgs e)
         {
-            coordinator.IsReadOnly = false;
+            //DataGridTextColumn.IsReadOnly = true;
+            Console.WriteLine("Class Button Pressed");
         }
 
 
         private void Add_Click(object sender, RoutedEventArgs e)
         {
-
-            EditUnitDetails details = new EditUnitDetails(new Unit());
-            details.ShowDialog();
-            unitList.Units.Add(details.unitDetail);
-
-            table.ItemsSource = null;
-            table.ItemsSource = unitList.VisibleUnits;
-
+            // TODO: add code to change/open class view
             Console.WriteLine("Class Button Pressed");
         }
     }

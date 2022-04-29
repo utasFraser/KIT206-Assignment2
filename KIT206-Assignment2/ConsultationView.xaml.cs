@@ -57,6 +57,8 @@ namespace KIT206_Assignment2
         private void btnEditConsultation_Click(object sender, RoutedEventArgs e)
         {
             int itemIndex = table.SelectedIndex;
+            if (itemIndex < 0 || itemIndex >= table.Items.Count)
+                return; 
             EditConsultation editConsultation = new EditConsultation(consultationList.Consultations[itemIndex]);
             editConsultation.ShowDialog();
             consultationList.Consultations[itemIndex] = editConsultation.change;
@@ -69,6 +71,8 @@ namespace KIT206_Assignment2
         private void btnRemoveConsultation_Click(object sender, RoutedEventArgs e)
         {
             int itemIndex = table.SelectedIndex;
+            if (itemIndex < 0 || itemIndex >= table.Items.Count)
+                return; 
             sqlConn.RemoveConsultation(consultationList.Consultations[itemIndex]);
             consultationList.Consultations.RemoveAt(itemIndex);
             consultationList.Invalidate();
