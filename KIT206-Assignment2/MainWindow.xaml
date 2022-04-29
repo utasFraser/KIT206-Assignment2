@@ -3,21 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:KIT206_Assignment2" x:Class="KIT206_Assignment2.MainWindow"
         Title="HRIS" Width="512" Height="390"
-        ResizeMode="NoResize"
     >
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="130*"/>
-            <ColumnDefinition Width="470*"/>
-        </Grid.ColumnDefinitions>
-        <ListBox x:Name="staffListBox" Grid.Column="1" Height="310" VerticalAlignment="Top"/>
-        <Button x:Name="detailsButton" Content="Details" Grid.Column="1" Margin="335,315,10,10" Click="detailsButton_Click"/>
-        <Button x:Name="staffButton" Content="Staff" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Width="91" IsEnabled="False" Click="staffButton_Click"/>
-        <Button x:Name="unitButton" Content="Unit" HorizontalAlignment="Center" Margin="0,69,0,0" VerticalAlignment="Top" Width="91" Click="unitButton_Click"/>
-        <Button x:Name="classButton" Content="Class" HorizontalAlignment="Center" Margin="0,123,0,0" VerticalAlignment="Top" Width="91" Click="classButton_Click"/>
-        <Button x:Name="consultationButton" Content="Consultation" HorizontalAlignment="Center" Margin="0,172,0,0" VerticalAlignment="Top" Width="91" Click="consultationButton_Click"/>
-        <Button x:Name="btnAddConsultation" Content="Add" Grid.Column="1" HorizontalAlignment="Left" Margin="10,320,0,0" VerticalAlignment="Top" Visibility="Hidden" Width="55" Click="btnAddConsultation_Click_1"/>
-        <Button x:Name="btnEditConsultation" Content="Edit" Grid.Column="1" HorizontalAlignment="Center" Margin="0,320,0,0" VerticalAlignment="Top" Visibility="Hidden" Width="55" Click="btnEditConsultation_Click"/>
-        <Button x:Name="btnRemoveConsultation" Content="Remove" Grid.Column="1" HorizontalAlignment="Left" Margin="308,320,0,0" VerticalAlignment="Top" Visibility="Hidden" Width="55" RenderTransformOrigin="1.153,0.412" Click="btnRemoveConsultation_Click"/>
+    <Grid x:Name="viewGrid">
+        
     </Grid>
 </Window>

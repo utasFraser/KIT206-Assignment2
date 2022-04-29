@@ -239,7 +239,7 @@ namespace KIT206_Assignment2
             return consultations;
         }
 
-        public static void UploadStaffMember(Staff staff)
+        public static void UploadStaffMember(Staff staff, bool isEditing = false)
         {
             MySqlConnection conn = GetConnection();
             MySqlDataReader rdr = null;
@@ -248,20 +248,41 @@ namespace KIT206_Assignment2
             {
                 conn.Open();
 
-                using (MySqlCommand command = new MySqlCommand())
+                if (isEditing)
                 {
-                    command.Connection = conn;
-                    command.CommandText = $"INSERT INTO staff (id, given_name, family_name, title, campus, phone, room, email, photo, category) VALUES ('{staff.id}', '{staff.given_name}', '{staff.family_name}', '{staff.title}', '{staff.campus}', '{staff.phone}', '{staff.room}', '{staff.email}', ?photo, '{staff.category}');";
-                    
-                    MySqlParameter photoParam = new MySqlParameter();
-                    photoParam.ParameterName = "?photo";
-                    photoParam.MySqlDbType = MySqlDbType.MediumBlob;
-                    photoParam.Size = staff.photo.Length;
-                    photoParam.Value = staff.photo;
-                    command.Parameters.Add(photoParam);
+                    using (MySqlCommand command = new MySqlCommand())
+                    {
+                        command.Connection = conn;
+                        command.CommandText = $"UPDATE staff SET given_name = '{staff.given_name}', family_name = '{staff.family_name}', title = '{staff.title}', photo = ?photo, category = '{staff.category}' WHERE id = {staff.id};";
 
-                    command.ExecuteNonQuery();
+                        MySqlParameter photoParam = new MySqlParameter();
+                        photoParam.ParameterName = "?photo";
+                        photoParam.MySqlDbType = MySqlDbType.MediumBlob;
+                        photoParam.Size = staff.photo.Length;
+                        photoParam.Value = staff.photo;
+                        command.Parameters.Add(photoParam);
 
+                        command.ExecuteNonQuery();
+
+                    }
+                }
+                else
+                {
+                    using (MySqlCommand command = new MySqlCommand())
+                    {
+                        command.Connection = conn;
+                        command.CommandText = $"INSERT INTO staff (id, given_name, family_name, title, campus, phone, room, email, photo, category) VALUES ('{staff.id}', '{staff.given_name}', '{staff.family_name}', '{staff.title}', '{staff.campus}', '{staff.phone}', '{staff.room}', '{staff.email}', ?photo, '{staff.category}');";
+
+                        MySqlParameter photoParam = new MySqlParameter();
+                        photoParam.ParameterName = "?photo";
+                        photoParam.MySqlDbType = MySqlDbType.MediumBlob;
+                        photoParam.Size = staff.photo.Length;
+                        photoParam.Value = staff.photo;
+                        command.Parameters.Add(photoParam);
+
+                        command.ExecuteNonQuery();
+
+                    }
                 }
             }
             catch (MySqlException e)
@@ -310,7 +331,6 @@ namespace KIT206_Assignment2
                 }
             }
         }
-
         public static void UploadConsultation(Consultation consultation)
         {
             MySqlConnection conn = GetConnection();
@@ -344,7 +364,6 @@ namespace KIT206_Assignment2
             }
         }
 
-        //don't touch, its working
         public static void RemoveConsultation(Consultation consultation)
         {
             MySqlConnection conn = GetConnection();
@@ -377,6 +396,7 @@ namespace KIT206_Assignment2
                 }
             }
         }
+
 
     }
 }

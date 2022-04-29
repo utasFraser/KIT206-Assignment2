@@ -34,8 +34,6 @@ namespace KIT206_Assignment2
         }
 
 
-
-
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
@@ -45,7 +43,6 @@ namespace KIT206_Assignment2
         {
             this.Close();
         }
-
         private void txtStaffID_TextChanged(object sender, TextChangedEventArgs e)
         {
             int id;
@@ -80,7 +77,6 @@ namespace KIT206_Assignment2
             }
             change.end = end;
         }
-
 
     }
 }

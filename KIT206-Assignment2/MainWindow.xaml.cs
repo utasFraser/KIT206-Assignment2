@@ -25,97 +25,21 @@ namespace KIT206_Assignment2
         public static List<Staff> staffList = new List<Staff>();
         public static List<Consultation> consultationList = new List<Consultation>();
 
+        public StaffView staffView;
+        public UnitView unitView;
+        public ConsultationView consultationView;
+
         public MainWindow()
         {
             InitializeComponent();
 
-            staffList = sqlConn.LoadAllStaff();
-            // sqlConn.LoadAllClasses();
             consultationList = sqlConn.LoadAllConsultations();
-            // sqlConn.LoadAllUnits();
 
-            staffListBox.Items.Clear();
-            foreach (var staff in staffList)
-            {
-                staffListBox.Items.Add(staff);
-            }
-        }
+            staffView = new StaffView(this);
+            unitView = new UnitView(this);
+            consultationView = new ConsultationView(this);
 
-        private void detailsButton_Click(object sender, RoutedEventArgs e)
-        {
-            int staffIndex = staffListBox.SelectedIndex;
-            if (staffIndex < 0 || staffIndex >= staffList.Count)
-                return; // don't select any invalid staff members
-
-            // TODO: add code to open the staff details window
-            Console.WriteLine($"Staff {staffIndex} Details Pressed");
-
-            EditStaffDetails details = new EditStaffDetails(staffList[staffIndex]);
-            details.ShowDialog();
-            staffList[staffIndex] = details.staffMember;
-            staffListBox.Items.RemoveAt(staffIndex);
-            staffListBox.Items.Insert(staffIndex, details.staffMember);
-        }
-
-        private void staffButton_Click(object sender, RoutedEventArgs e)
-        {
-            // With just one window we don't need to do too much here
-            // It's disabled by default so its obvious it shouldn't be pressed yet
-
-            // later on we'll probably have this button return us to the staff list
-            Console.WriteLine("Staff Button Pressed");
-        }
-
-        private void unitButton_Click(object sender, RoutedEventArgs e)
-        {
-            // TODO: add code to change/open unit view
-            Console.WriteLine("Unit Button Pressed");
-        }
-
-        private void classButton_Click(object sender, RoutedEventArgs e)
-        {
-            // TODO: add code to change/open class view
-            Console.WriteLine("Class Button Pressed");
-        }
-
-        private void consultationButton_Click(object sender, RoutedEventArgs e)
-        {
-            staffListBox.Items.Clear();
-
-            foreach (var consultation in consultationList)
-            {
-                staffListBox.Items.Add(consultation);
-            }
-            staffButton.IsEnabled = true;
-            consultationButton.IsEnabled = false;
-            detailsButton.Visibility = Visibility.Hidden;
-            btnAddConsultation.Visibility = Visibility.Visible;
-            btnEditConsultation.Visibility = Visibility.Visible;
-            btnRemoveConsultation.Visibility = Visibility.Visible;
-            Console.WriteLine("Consultation Button Pressed");
-        }
-
-        private void btnAddConsultation_Click_1(object sender, RoutedEventArgs e)
-        {
-            AddConsultation popup = new AddConsultation();
-            popup.ShowDialog();
-        }
-
-        private void btnEditConsultation_Click(object sender, RoutedEventArgs e)
-        {
-            int itemIndex = staffListBox.SelectedIndex;
-            EditConsultation editConsultation = new EditConsultation(consultationList[itemIndex]);
-            editConsultation.ShowDialog();
-            consultationList[itemIndex] = editConsultation.change;
-            staffListBox.Items.RemoveAt(itemIndex);
-            staffListBox.Items.Insert(itemIndex, editConsultation.change);
-        }
-
-        private void btnRemoveConsultation_Click(object sender, RoutedEventArgs e)
-        {
-            int itemIndex = staffListBox.SelectedIndex;
-            sqlConn.RemoveConsultation(consultationList[itemIndex]);
-            staffListBox.Items.RemoveAt(itemIndex);
+            viewGrid.Children.Add(staffView);
         }
     }
 }
