@@ -368,6 +368,7 @@ namespace KIT206_Assignment2
             }
         }
 
+        //dont touch, its working
         public static void RemoveConsultation(Consultation consultation)
         {
             MySqlConnection conn = GetConnection();
