@@ -21,22 +21,18 @@ namespace KIT206_Assignment2
     /// </summary>
     public partial class MainWindow : Window
     {
-        // List of all staff members
-        public static List<Staff> staffList = new List<Staff>();
-        public static List<Consultation> consultationList = new List<Consultation>();
-
         public StaffView staffView;
         public UnitView unitView;
+        public ClassView classView;
         public ConsultationView consultationView;
 
         public MainWindow()
         {
             InitializeComponent();
 
-            consultationList = sqlConn.LoadAllConsultations();
-
             staffView = new StaffView(this);
             unitView = new UnitView(this);
+            classView = new ClassView(this);
             consultationView = new ConsultationView(this);
 
             viewGrid.Children.Add(staffView);

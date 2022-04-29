@@ -39,8 +39,8 @@ namespace KIT206_Assignment2
 
         private void classButton_Click(object sender, RoutedEventArgs e)
         {
-            // TODO: add code to change/open class view
-            Console.WriteLine("Class Button Pressed");
+            mainWindow.viewGrid.Children.Clear();
+            mainWindow.viewGrid.Children.Add(mainWindow.classView);
         }
 
         private void consultationButton_Click(object sender, RoutedEventArgs e)
