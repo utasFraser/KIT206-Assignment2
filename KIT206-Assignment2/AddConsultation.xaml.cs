@@ -52,6 +52,7 @@ namespace KIT206_Assignment2
             consultation.end = end;
 
             sqlConn.AddConsultation(consultation);
+            this.Close();
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
