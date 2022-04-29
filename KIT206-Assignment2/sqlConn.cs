@@ -240,40 +240,6 @@ namespace KIT206_Assignment2
             return consultations;
         }
 
-        public static void UploadNewUnit(Unit unit)
-        {
-            MySqlConnection conn = GetConnection();
-            MySqlDataReader rdr = null;
-
-            try
-            {
-                conn.Open();
-                using (MySqlCommand command = new MySqlCommand())
-                {
-                    command.Connection = conn;
-                    command.CommandText = $"INSERT INTO unit (code, title, coordinator) VALUES ('{unit.code}', '{unit.title}', '{unit.coordinator}');";
-
-                    command.ExecuteNonQuery();
-
-                }
-            }
-            catch (MySqlException e)
-            {
-                Console.WriteLine("Error connecting to database: " + e);
-            }
-            finally
-            {
-                if (rdr != null)
-                {
-                    rdr.Close();
-                }
-                if (conn != null)
-                {
-                    conn.Close();
-                }
-            }
-        }
-        
         public static void UploadStaffMember(Staff staff, bool isEditing = false)
         {
             MySqlConnection conn = GetConnection();
@@ -370,7 +336,7 @@ namespace KIT206_Assignment2
                 }
             }
         }
-        public static void UploadConsultation(Consultation org, Consultation consultation)
+        public static void UploadConsultation(Consultation consultation)
         {
             MySqlConnection conn = GetConnection();
             MySqlDataReader rdr = null;
@@ -382,7 +348,7 @@ namespace KIT206_Assignment2
                 using (MySqlCommand command = new MySqlCommand())
                 {
                     command.Connection = conn;
-                    command.CommandText = $"update consultation set staff_id = '{consultation.staff_id}', day = '{consultation.day}', start = '{consultation.start}', end = '{consultation.end}' WHERE staff_id = '{org.staff_id}' and day = '{org.day}' and start = '{org.start}' and end = '{org.end}';";
+                    command.CommandText = $"update consultation set staff_id = '{consultation.staff_id}', day = '{consultation.day}', start = '{consultation.start}', end = '{consultation.end}' WHERE staff_id = '{consultation.staff_id}' and day = '{consultation.day}';";
                     MessageBox.Show(command.CommandText);  //for debugging
                     command.ExecuteNonQuery();
                 }
@@ -437,5 +403,7 @@ namespace KIT206_Assignment2
                 }
             }
         }
+
+
     }
 }
