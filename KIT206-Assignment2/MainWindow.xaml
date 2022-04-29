@@ -16,5 +16,8 @@
         <Button x:Name="unitButton" Content="Unit" HorizontalAlignment="Center" Margin="0,69,0,0" VerticalAlignment="Top" Width="91" Click="unitButton_Click"/>
         <Button x:Name="classButton" Content="Class" HorizontalAlignment="Center" Margin="0,123,0,0" VerticalAlignment="Top" Width="91" Click="classButton_Click"/>
         <Button x:Name="consultationButton" Content="Consultation" HorizontalAlignment="Center" Margin="0,172,0,0" VerticalAlignment="Top" Width="91" Click="consultationButton_Click"/>
+        <Button x:Name="btnAddConsultation" Content="Add" Grid.Column="1" HorizontalAlignment="Left" Margin="10,320,0,0" VerticalAlignment="Top" Visibility="Hidden" Width="55"/>
+        <Button x:Name="btnEditConsultation" Content="Edit" Grid.Column="1" HorizontalAlignment="Center" Margin="0,320,0,0" VerticalAlignment="Top" Visibility="Hidden" Width="55"/>
+        <Button x:Name="btnRemoveConsultation" Content="Remove" Grid.Column="1" HorizontalAlignment="Left" Margin="308,320,0,0" VerticalAlignment="Top" Visibility="Hidden" Width="55" RenderTransformOrigin="1.153,0.412"/>
     </Grid>
 </Window>

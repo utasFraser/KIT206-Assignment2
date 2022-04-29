@@ -23,6 +23,7 @@ namespace KIT206_Assignment2
     {
         // List of all staff members
         public static List<Staff> staffList = new List<Staff>();
+        public static List<Consultation> consultationList = new List<Consultation>();
 
         public MainWindow()
         {
@@ -30,7 +31,7 @@ namespace KIT206_Assignment2
 
             staffList = sqlConn.LoadAllStaff();
             // sqlConn.LoadAllClasses();
-            // sqlConn.LoadAllConsultations();
+            consultationList = sqlConn.LoadAllConsultations();
             // sqlConn.LoadAllUnits();
 
             staffListBox.Items.Clear();
@@ -73,7 +74,18 @@ namespace KIT206_Assignment2
 
         private void consultationButton_Click(object sender, RoutedEventArgs e)
         {
-            // TODO: add code to change/open consultation view
+            staffListBox.Items.Clear();
+
+            foreach (var consultation in consultationList)
+            {
+                staffListBox.Items.Add(string.Format("{0}, {1}, {2}, {3}", consultation.staff_id.ToString(), consultation.day.ToString(), consultation.start.ToString(), consultation.end.ToString()));
+            }
+            staffButton.IsEnabled = true;
+            consultationButton.IsEnabled = false;
+            detailsButton.Visibility = Visibility.Hidden;
+            btnAddConsultation.Visibility = Visibility.Visible;
+            btnEditConsultation.Visibility = Visibility.Visible;
+            btnRemoveConsultation.Visibility = Visibility.Visible;
             Console.WriteLine("Consultation Button Pressed");
         }
     }
