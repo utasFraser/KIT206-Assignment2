@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows;
 
 namespace KIT206_Assignment2
 {
@@ -335,7 +336,7 @@ namespace KIT206_Assignment2
                 }
             }
         }
-        public static void UploadConsultation(Consultation consultation)
+        public static void UploadConsultation(Consultation org, Consultation consultation)
         {
             MySqlConnection conn = GetConnection();
             MySqlDataReader rdr = null;
@@ -347,7 +348,8 @@ namespace KIT206_Assignment2
                 using (MySqlCommand command = new MySqlCommand())
                 {
                     command.Connection = conn;
-                    command.CommandText = $"update consultation set staff_id = '{consultation.staff_id}', day = '{consultation.day}', start = '{consultation.start}', end = '{consultation.end}' WHERE item = '{consultation}' ;";
+                    command.CommandText = $"update consultation set staff_id = '{consultation.staff_id}', day = '{consultation.day}', start = '{consultation.start}', end = '{consultation.end}' WHERE staff_id = '{org.staff_id}' and day = '{org.day}' and start = '{org.start}' and end = '{org.end}';";
+                    MessageBox.Show(command.CommandText);  //for debugging
                     command.ExecuteNonQuery();
                 }
             }

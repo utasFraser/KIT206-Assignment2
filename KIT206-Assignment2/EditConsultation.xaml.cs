@@ -17,10 +17,11 @@ namespace KIT206_Assignment2
     /// </summary>
     public partial class EditConsultation : Window
     {
-        public Consultation change;
+        public Consultation change, prev;
         public EditConsultation(Consultation consultation)
         {
             InitializeComponent();
+            prev = consultation;
             foreach (var item in Enum.GetValues(typeof(Consultation.Day)))
             {
                 boxDay.Items.Add(item);
@@ -41,6 +42,7 @@ namespace KIT206_Assignment2
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
+            sqlConn.UploadConsultation(prev, change);
             this.Close();
         }
         private void txtStaffID_TextChanged(object sender, TextChangedEventArgs e)
