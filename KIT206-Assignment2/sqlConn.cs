@@ -336,6 +336,41 @@ namespace KIT206_Assignment2
                 }
             }
         }
+        
+                public static void UploadNewUnit(Unit unit)
+        {
+            MySqlConnection conn = GetConnection();
+            MySqlDataReader rdr = null;
+
+            try
+            {
+                conn.Open();
+                using (MySqlCommand command = new MySqlCommand())
+                {
+                    command.Connection = conn;
+                    command.CommandText = $"INSERT INTO unit (code, title, coordinator) VALUES ('{unit.code}', '{unit.title}', '{unit.coordinator}');";
+
+                    command.ExecuteNonQuery();
+
+                }
+            }
+            catch (MySqlException e)
+            {
+                Console.WriteLine("Error connecting to database: " + e);
+            }
+            finally
+            {
+                if (rdr != null)
+                {
+                    rdr.Close();
+                }
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+        }
+        
         public static void UploadConsultation(Consultation consultation)
         {
             MySqlConnection conn = GetConnection();
