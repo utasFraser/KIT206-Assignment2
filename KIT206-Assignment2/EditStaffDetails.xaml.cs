@@ -21,14 +21,14 @@ namespace KIT206_Assignment2
 
         public Staff staffMember;
 
-
+        // code borrowed from: https://stackoverflow.com/a/14337202
         public BitmapImage ToImage(byte[] array)
         {
             using (var ms = new System.IO.MemoryStream(array))
             {
                 var image = new BitmapImage();
                 image.BeginInit();
-                image.CacheOption = BitmapCacheOption.OnLoad; // here
+                image.CacheOption = BitmapCacheOption.OnLoad;
                 image.StreamSource = ms;
                 image.EndInit();
                 return image;
@@ -37,22 +37,23 @@ namespace KIT206_Assignment2
 
         public EditStaffDetails(Staff staff)
         {
-            staffMember = staff;
 
             InitializeComponent();
-            
-            staffIDBox.Text             = staff.id.ToString();
-            nameBox.Text                = staff.given_name;
-            lNameBox.Text               = staff.family_name;
-            titleBox.Text               = staff.title;
-            campusBox.SelectedIndex     = (int)staff.campus;
-            phoneBox.Text               = staff.phone;
-            roomBox.Text                = staff.room;
-            emailBox.Text               = staff.email;
-            categoryBox.SelectedIndex   = (int)staff.category;
 
-            if (staff.photo.Length > 0)
-                photo.Source = ToImage(staff.photo);
+            staffMember = staff;
+
+            staffIDBox.Text             = staffMember.id.ToString();
+            nameBox.Text                = staffMember.given_name;
+            lNameBox.Text               = staffMember.family_name;
+            titleBox.Text               = staffMember.title;
+            campusBox.SelectedIndex     = (int)staffMember.campus;
+            phoneBox.Text               = staffMember.phone;
+            roomBox.Text                = staffMember.room;
+            emailBox.Text               = staffMember.email;
+            categoryBox.SelectedIndex   = (int)staffMember.category;
+
+            if (staffMember.photo.Length > 0)
+                photo.Source = ToImage(staffMember.photo);
         }
 
         private void staffIDBox_TextChanged(object sender, TextChangedEventArgs args)
