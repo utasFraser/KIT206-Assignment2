@@ -349,7 +349,7 @@ namespace KIT206_Assignment2
                 {
                     command.Connection = conn;
                     command.CommandText = $"update consultation set staff_id = '{consultation.staff_id}', day = '{consultation.day}', start = '{consultation.start}', end = '{consultation.end}' WHERE staff_id = '{consultation.staff_id}' and day = '{consultation.day}';";
-                    MessageBox.Show(command.CommandText);  //for debugging
+                    //MessageBox.Show(command.CommandText);  //for debugging
                     command.ExecuteNonQuery();
                 }
             }
