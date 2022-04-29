@@ -290,9 +290,76 @@ namespace KIT206_Assignment2
             {
                 conn.Open();
 
-                MySqlCommand cmd = new MySqlCommand("insert into consultation (staff_id, day, start, end) values ("+consultation.staff_id+", "+consultation.day+", "+consultation.start+", "+consultation.end+")", conn);
+                MySqlCommand cmd = new MySqlCommand("insert into consultation (staff_id, day, start, end) values (" + consultation.staff_id.ToString() + ", " + consultation.day + ", " + consultation.start + ", " + consultation.end + ");", conn);
                 rdr = cmd.ExecuteReader();
 
+            }
+            catch (MySqlException e)
+            {
+                Console.WriteLine("Error connecting to database: " + e);
+            }
+            finally
+            {
+                if (rdr != null)
+                {
+                    rdr.Close();
+                }
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+        }
+
+        public static void UploadConsultation(Consultation consultation)
+        {
+            MySqlConnection conn = GetConnection();
+            MySqlDataReader rdr = null;
+
+            try
+            {
+                conn.Open();
+
+                using (MySqlCommand command = new MySqlCommand())
+                {
+                    command.Connection = conn;
+                    command.CommandText = $"update consultation set staff_id = '{consultation.staff_id}', day = '{consultation.day}', start = '{consultation.start}', end = '{consultation.end}' WHERE item = '{consultation}' ;";
+                    command.ExecuteNonQuery();
+                }
+            }
+            catch (MySqlException e)
+            {
+                Console.WriteLine("Error connecting to database: " + e);
+            }
+            finally
+            {
+                if (rdr != null)
+                {
+                    rdr.Close();
+                }
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+        }
+
+        //don't touch, its working
+        public static void RemoveConsultation(Consultation consultation)
+        {
+            MySqlConnection conn = GetConnection();
+            MySqlDataReader rdr = null;
+
+            try
+            {
+                conn.Open();
+
+                using (MySqlCommand command = new MySqlCommand())
+                {
+                    command.Connection = conn;
+                    command.CommandText = $"delete from consultation where staff_id = '{consultation.staff_id}' and day = '{consultation.day}' and start = '{consultation.start}' and end = '{consultation.end}';";
+                    command.ExecuteNonQuery();
+                }
             }
             catch (MySqlException e)
             {
