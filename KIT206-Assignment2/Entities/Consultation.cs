@@ -22,5 +22,10 @@ namespace KIT206_Assignment2
         public Day day { get; set; }
         public TimeSpan start { get; set; }
         public TimeSpan end { get; set; }
+
+        public override string ToString()
+        {
+            return string.Format("{0}, {1}, {2}, {3}", staff_id.ToString(), day.ToString(), start.ToString(), end.ToString());
+        }
     }
 }

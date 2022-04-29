@@ -78,7 +78,7 @@ namespace KIT206_Assignment2
 
             foreach (var consultation in consultationList)
             {
-                staffListBox.Items.Add(string.Format("{0}, {1}, {2}, {3}", consultation.staff_id.ToString(), consultation.day.ToString(), consultation.start.ToString(), consultation.end.ToString()));
+                staffListBox.Items.Add(consultation);
             }
             staffButton.IsEnabled = true;
             consultationButton.IsEnabled = false;
