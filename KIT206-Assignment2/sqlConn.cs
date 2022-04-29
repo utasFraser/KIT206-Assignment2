@@ -281,5 +281,35 @@ namespace KIT206_Assignment2
             }
         }
 
+        public static void AddConsultation(Consultation consultation)
+        {
+            MySqlConnection conn = GetConnection();
+            MySqlDataReader rdr = null;
+
+            try
+            {
+                conn.Open();
+
+                MySqlCommand cmd = new MySqlCommand("insert into consultation (staff_id, day, start, end) values ()", conn);
+                rdr = cmd.ExecuteReader();
+
+            }
+            catch (MySqlException ee)
+            {
+                Console.WriteLine("Error connecting to database: " + ee);
+            }
+            finally
+            {
+                if (rdr != null)
+                {
+                    rdr.Close();
+                }
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+        }
+
     }
 }

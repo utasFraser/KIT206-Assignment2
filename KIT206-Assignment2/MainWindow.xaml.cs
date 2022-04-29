@@ -94,5 +94,11 @@ namespace KIT206_Assignment2
             btnRemoveConsultation.Visibility = Visibility.Visible;
             Console.WriteLine("Consultation Button Pressed");
         }
+
+        private void btnAddConsultation_Click_1(object sender, RoutedEventArgs e)
+        {
+            AddConsultation popup = new AddConsultation();
+            popup.ShowDialog();
+        }
     }
 }
