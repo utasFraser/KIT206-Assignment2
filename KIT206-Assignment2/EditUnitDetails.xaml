@@ -8,12 +8,13 @@
         Title="Edit Staff Details" Height="167" Width="351" 
         >
     <Grid Margin="0,0,0,10">
-        <Label Content="Coordinator" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-        <Label Content="code" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
-        <Label Content="Title" HorizontalAlignment="Left" Margin="10,77,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="staffIDBox" HorizontalAlignment="Right" Margin="0,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="174" TextChanged="staffIDBox_TextChanged"/>
-        <TextBox x:Name="codeBox" HorizontalAlignment="Right" Margin="116,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="174" TextChanged="codeBox_TextChanged"/>
-        <TextBox x:Name="titleBox" HorizontalAlignment="Right" Margin="0,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="174" TextChanged="titleBox_TextChanged"/>
+        <Label Content="Coordinator" HorizontalAlignment="Left" Margin="13,72,0,0" VerticalAlignment="Top"/>
+        <Label Content="Code" HorizontalAlignment="Left" Margin="13,10,0,0" VerticalAlignment="Top"/>
+        <Label Content="Title" HorizontalAlignment="Left" Margin="13
+               ,41,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="staffIDBox" HorizontalAlignment="Left" Margin="180,76,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="174" TextChanged="staffIDBox_TextChanged"/>
+        <TextBox x:Name="codeBox" HorizontalAlignment="Right" Margin="0,14,-1,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="174" TextChanged="codeBox_TextChanged"/>
+        <TextBox x:Name="titleBox" HorizontalAlignment="Right" Margin="0,44,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="174" TextChanged="titleBox_TextChanged"/>
         <Button x:Name="saveButton" Content="Add Staff Member" HorizontalAlignment="Left" Margin="10,118,0,0" VerticalAlignment="Top" Click="saveButton_Click"/>
         <Button x:Name="cancelButton" Content="Cancel" HorizontalAlignment="Right" Margin="0,118,0,0" VerticalAlignment="Top" Click="cancelButton_Click"/>
 
