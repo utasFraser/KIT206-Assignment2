@@ -311,5 +311,71 @@ namespace KIT206_Assignment2
             }
         }
 
+        public static void UploadConsultation(Consultation consultation)
+        {
+            MySqlConnection conn = GetConnection();
+            MySqlDataReader rdr = null;
+
+            try
+            {
+                conn.Open();
+
+                using (MySqlCommand command = new MySqlCommand())
+                {
+                    command.Connection = conn;
+                    command.CommandText = $"update consultation set staff_id = '{consultation.staff_id}', day = '{consultation.day}', start = '{consultation.start}', end = '{consultation.end}' WHERE item = '{consultation}' ;";
+                    command.ExecuteNonQuery();
+                }
+            }
+            catch (MySqlException e)
+            {
+                Console.WriteLine("Error connecting to database: " + e);
+            }
+            finally
+            {
+                if (rdr != null)
+                {
+                    rdr.Close();
+                }
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+        }
+
+        public static void RemoveConsultation(Consultation consultation)
+        {
+            MySqlConnection conn = GetConnection();
+            MySqlDataReader rdr = null;
+
+            try
+            {
+                conn.Open();
+
+                using (MySqlCommand command = new MySqlCommand())
+                {
+                    command.Connection = conn;
+                    command.CommandText = $"delete from consultation where item = '{consultation}';";
+                    command.ExecuteNonQuery();
+                }
+            }
+            catch (MySqlException e)
+            {
+                Console.WriteLine("Error connecting to database: " + e);
+            }
+            finally
+            {
+                if (rdr != null)
+                {
+                    rdr.Close();
+                }
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+        }
+
     }
 }

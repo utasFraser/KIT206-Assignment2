@@ -110,5 +110,12 @@ namespace KIT206_Assignment2
             staffListBox.Items.RemoveAt(itemIndex);
             staffListBox.Items.Insert(itemIndex, editConsultation.change);
         }
+
+        private void btnRemoveConsultation_Click(object sender, RoutedEventArgs e)
+        {
+            int itemIndex = staffListBox.SelectedIndex;
+            sqlConn.RemoveConsultation(consultationList[itemIndex]);
+            staffListBox.Items.RemoveAt(itemIndex);
+        }
     }
 }

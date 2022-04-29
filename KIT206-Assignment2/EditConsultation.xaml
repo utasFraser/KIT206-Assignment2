@@ -7,14 +7,14 @@
         mc:Ignorable="d"
         Title="EditConsultation" Height="300" Width="250">
     <Grid>
-        <TextBox x:Name="txtStaffID" HorizontalAlignment="Left" Margin="81,49,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="txtStaffID" HorizontalAlignment="Left" Margin="81,49,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="txtStaffID_TextChanged"/>
         <Label Content="Staff ID:" HorizontalAlignment="Left" Margin="20,45,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.085,0.157"/>
-        <ComboBox x:Name="boxDay" HorizontalAlignment="Left" Margin="81,74,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="-0.213,0.129"/>
+        <ComboBox x:Name="boxDay" HorizontalAlignment="Left" Margin="81,74,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="-0.213,0.129" SelectionChanged="boxDay_SelectionChanged"/>
         <Label Content="Day" HorizontalAlignment="Left" Margin="30,74,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.272,0.053"/>
         <Label Content="End time:" HorizontalAlignment="Left" Margin="15,134,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.216,-0.128"/>
-        <TextBox x:Name="txtEnd" HorizontalAlignment="Left" Margin="81,138,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="txtEnd" HorizontalAlignment="Left" Margin="81,138,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="txtEnd_TextChanged"/>
         <Label Content="Start time:" HorizontalAlignment="Left" Margin="13,103,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.404,0.14"/>
-        <TextBox x:Name="txtStart" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="81,107,0,0" RenderTransformOrigin="0.479,-1.251"/>
+        <TextBox x:Name="txtStart" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="81,107,0,0" RenderTransformOrigin="0.479,-1.251" TextChanged="txtStart_TextChanged"/>
         <Button x:Name="btnSave" Content="Save" HorizontalAlignment="Left" Margin="37,200,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.157,0.827" Click="btnSave_Click"/>
         <Button x:Name="btnCancel" Content="Cancel" HorizontalAlignment="Left" Margin="141,200,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.16,-0.134" Click="btnCancel_Click"/>
     </Grid>

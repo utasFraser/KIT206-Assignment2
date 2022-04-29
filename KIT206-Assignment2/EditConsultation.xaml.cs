@@ -34,6 +34,8 @@ namespace KIT206_Assignment2
         }
 
 
+
+
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
@@ -43,5 +45,42 @@ namespace KIT206_Assignment2
         {
             this.Close();
         }
+
+        private void txtStaffID_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            int id;
+            if (!int.TryParse(txtStaffID.Text, out id))
+            {
+                MessageBox.Show("Please check the staff ID format.");
+            }
+            change.staff_id = id;
+        }
+
+        private void boxDay_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            change.day = (Consultation.Day)boxDay.SelectedItem;
+        }
+
+        private void txtStart_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TimeSpan start;
+            if (!TimeSpan.TryParse(txtStart.Text, out start))
+            {
+                MessageBox.Show("Please check the start time format.");
+            }
+            change.start = start;
+        }
+
+        private void txtEnd_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TimeSpan end;
+            if (!TimeSpan.TryParse(txtEnd.Text, out end))
+            {
+                MessageBox.Show("Please check the end time format.");
+            }
+            change.end = end;
+        }
+
+
     }
 }
