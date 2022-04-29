@@ -29,7 +29,7 @@ namespace KIT206_Assignment2
         public string phone { get; set; }
         public string room { get; set; }
         public string email { get; set; }
-        public string photo { get; set; }
+        public byte[] photo { get; set; }
         public Category category { get; set; }
 
         public override string ToString()

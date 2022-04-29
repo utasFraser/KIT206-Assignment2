@@ -51,7 +51,7 @@ namespace KIT206_Assignment2
                 {
                     var campus = Staff.Campus.Hobart;
                     var category = Staff.Category.casual;
-                    var photo = "";
+                    byte[] photo = null;
                     try
                     {
                         campus = ParseEnum<Staff.Campus>(rdr.GetString(4));
@@ -60,7 +60,7 @@ namespace KIT206_Assignment2
 
                     try
                     {
-                        photo = rdr.GetString(8);
+                        photo = (byte[])(rdr["photo"]);
                     }
                     catch { }
 
@@ -239,6 +239,47 @@ namespace KIT206_Assignment2
             return consultations;
         }
 
+        public static void UploadStaffMember(Staff staff)
+        {
+            MySqlConnection conn = GetConnection();
+            MySqlDataReader rdr = null;
+
+            try
+            {
+                conn.Open();
+
+                using (MySqlCommand command = new MySqlCommand())
+                {
+                    command.Connection = conn;
+                    command.CommandText = $"INSERT INTO staff (id, given_name, family_name, title, campus, phone, room, email, photo, category) VALUES ('{staff.id}', '{staff.given_name}', '{staff.family_name}', '{staff.title}', '{staff.campus}', '{staff.phone}', '{staff.room}', '{staff.email}', ?photo, '{staff.category}');";
+                    
+                    MySqlParameter photoParam = new MySqlParameter();
+                    photoParam.ParameterName = "?photo";
+                    photoParam.MySqlDbType = MySqlDbType.MediumBlob;
+                    photoParam.Size = staff.photo.Length;
+                    photoParam.Value = staff.photo;
+                    command.Parameters.Add(photoParam);
+
+                    command.ExecuteNonQuery();
+
+                }
+            }
+            catch (MySqlException e)
+            {
+                Console.WriteLine("Error connecting to database: " + e);
+            }
+            finally
+            {
+                if (rdr != null)
+                {
+                    rdr.Close();
+                }
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+        }
 
     }
 }

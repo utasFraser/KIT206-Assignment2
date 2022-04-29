@@ -43,12 +43,18 @@ namespace KIT206_Assignment2
 
         private void detailsButton_Click(object sender, RoutedEventArgs e)
         {
-            uint staffIndex = (uint)staffListBox.SelectedIndex;
-            if (staffIndex >= staffList.Count)
+            int staffIndex = staffListBox.SelectedIndex;
+            if (staffIndex < 0 || staffIndex >= staffList.Count)
                 return; // don't select any invalid staff members
 
             // TODO: add code to open the staff details window
             Console.WriteLine($"Staff {staffIndex} Details Pressed");
+
+            EditStaffDetails details = new EditStaffDetails(staffList[staffIndex]);
+            details.ShowDialog();
+            staffList[staffIndex] = details.staffMember;
+            staffListBox.Items.RemoveAt(staffIndex);
+            staffListBox.Items.Insert(staffIndex, details.staffMember);
         }
 
         private void staffButton_Click(object sender, RoutedEventArgs e)
